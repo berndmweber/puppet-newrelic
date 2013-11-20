@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+#
+# Copyright (C) Nginx, Inc.
+
+require 'rubygems'
+require 'daemons'
+require 'bundler/setup'
+
+options = {
+        :dir_mode => :system
+}
+Daemons.run('<%= @local_dir %>/newrelic_nginx_agent', options)

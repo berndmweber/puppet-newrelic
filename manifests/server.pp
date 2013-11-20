@@ -32,7 +32,7 @@
 #
 # Copyright 2012 Felipe Salum, unless otherwise noted.
 #
-define newrelic::server (
+class newrelic::server (
   $newrelic_license_key    = '',
   $newrelic_package_ensure = 'present',
   $newrelic_service_ensure = 'running',
@@ -67,4 +67,9 @@ define newrelic::server (
     notify      => Service[$newrelic_service_name],
   }
 
+  file { '/var/log/newrelic' :
+    owner   => 'newrelic',
+    group   => 'newrelic',
+    require => Package [ $newrelic_package_name ],
+  }
 }
